@@ -5,7 +5,8 @@ for each oResult in oResults
    iFull = oResult.FullChargedCapacity
 next
 
-RepeatTimeInMin = 0.02 ' For flashing notification
+RepeatTimeInSec = 2 ' For flashing notification
+VBRepeatTimeInSec = RepeatTimeInSec + 1
 
 while (1)
   set oResults = oServices.ExecQuery("select * from batterystatus")
@@ -26,12 +27,12 @@ while (1)
 	ps1File = scriptFolder & "\FullHealthUI.ps1"
 	
     ' Build PowerShell command to run notify.ps1 with parameters
-    psCommand = "powershell -NoProfile -ExecutionPolicy Bypass -File """ & ps1File & """ " & RepeatTimeInMin & " " & iPercent
+    psCommand = "powershell -NoProfile -ExecutionPolicy Bypass -File """ & ps1File & """ " & RepeatTimeInSec & " " & iPercent
 	
     ' Run PowerShell silently (0 = hidden window, False = no wait)
     shell.Run psCommand, 0, False
   end if
-  wscript.sleep RepeatTimeInMin*60000 ' milliseconds
+  wscript.sleep VBRepeatTimeInSec*1000 ' milliseconds
 
 wend
 
