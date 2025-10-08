@@ -23,7 +23,7 @@ while (1)
 	scriptFolder = objFSO.GetParentFolderName(WScript.ScriptFullName)
 
 	' Build the full path to the PowerShell script
-	ps1File = scriptFolder & "\Notify.ps1"
+	ps1File = scriptFolder & "\FullHealthUI.ps1"
 	
     ' Build PowerShell command to run notify.ps1 with parameters
     psCommand = "powershell -NoProfile -ExecutionPolicy Bypass -File """ & ps1File & """ " & RepeatTimeInMin & " " & iPercent
@@ -34,3 +34,4 @@ while (1)
   wscript.sleep RepeatTimeInMin*60000 ' milliseconds
 
 wend
+
