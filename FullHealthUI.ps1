@@ -1,5 +1,5 @@
 param(
-	[float]$RepeatTimeInMin,
+	[float]$RepeatTimeInSec,
 	[float]$BattPercent
 )
 
@@ -56,7 +56,7 @@ $window.Top = $screen.Bottom - $window.Height - 20
 
 # Set up a timer for 10 minutes (600 seconds)
 $timer = New-Object System.Windows.Threading.DispatcherTimer
-$timer.Interval = [TimeSpan]::FromSeconds($RepeatTimeInMin*60)
+$timer.Interval = [TimeSpan]::FromSeconds($RepeatTimeInSec)
 $timer.Add_Tick({
     $timer.Stop()
     if ($window.IsVisible) {
